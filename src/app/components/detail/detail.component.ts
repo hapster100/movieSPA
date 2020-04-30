@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Movie, MovieDetail } from '../Movie';
-import { MoviesService } from '../movies.service';
+import { Movie, MovieDetail } from '../../interfaces/Movie';
+import { MoviesService } from '../../services/movies.service';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators'
-import { FavoritesService } from '../favorites.service';
+import { FavoritesService } from '../../services/favorites.service';
 
 @Component({
   selector: 'app-detail',

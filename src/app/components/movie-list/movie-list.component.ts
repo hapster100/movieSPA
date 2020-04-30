@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Movie, Genre } from '../Movie';
-import { MoviesService } from '../movies.service';
-import { FavoritesService } from '../favorites.service';
+import { Movie, Genre } from '../../interfaces/Movie';
+import { MoviesService } from '../../services/movies.service';
+import { FavoritesService } from '../../services/favorites.service';
 
 @Component({
   selector: 'app-movie-list',

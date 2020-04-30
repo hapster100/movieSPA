@@ -3,8 +3,8 @@ import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 
 import { AppComponent } from './app.component'
-import { PopularComponent } from './popular/popular.component'
-import { TopbarComponent } from './topbar/topbar.component'
+import { PopularComponent } from './components/popular/popular.component'
+import { TopbarComponent } from './components/topbar/topbar.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatButtonModule } from '@angular/material/button'
@@ -13,12 +13,12 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatCardModule } from '@angular/material/card'
 import { RouterModule } from '@angular/router'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
-import { PreviewComponent } from './preview/preview.component'
-import { LoaderComponent } from './loader/loader.component';
-import { MovieListComponent } from './movie-list/movie-list.component';
-import { DetailComponent } from './detail/detail.component';
-import { FavoriteComponent } from './favorite/favorite.component';
-import { SearchComponent } from './search/search.component'
+import { PreviewComponent } from './components/preview/preview.component'
+import { LoaderComponent } from './components/loader/loader.component';
+import { MovieListComponent } from './components/movie-list/movie-list.component';
+import { DetailComponent } from './components/detail/detail.component';
+import { FavoriteComponent } from './components/favorite/favorite.component';
+import { SearchComponent } from './components/search/search.component'
 import { FormsModule } from '@angular/forms'
 
 @NgModule({

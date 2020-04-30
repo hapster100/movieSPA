@@ -12,7 +12,9 @@ export class TopbarComponent implements OnInit {
 
   constructor(
     private router: Router
-  ) { 
+  ) { }
+  
+  ngOnInit(): void {
     this.router.events.subscribe((val) => {
       if(val instanceof NavigationEnd) {
         const { url } = val
@@ -23,11 +25,7 @@ export class TopbarComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
-  }
-
   inputHandler(value: string) {
-    console.log(value)
     if(value.trim()) {
       this.router.navigate(['/search', {str: value}])
     } else {

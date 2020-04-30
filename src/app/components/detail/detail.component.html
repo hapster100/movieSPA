@@ -45,7 +45,11 @@
           [title]="rec.title"
           [imgUrl]="rec.poster_path"
           [id]="rec.id"
-        ></app-preview>
+        >
+          <div class="preview-title">
+            {{ rec.title }}
+          </div>
+        </app-preview>
       </div>
     </div>
   </div>

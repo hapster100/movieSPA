@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Movie, MovieDetail, Genre } from './Movie'
+import { Movie, MovieDetail, Genre } from '../interfaces/Movie'
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
