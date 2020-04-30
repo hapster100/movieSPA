@@ -18,9 +18,6 @@ export class TopbarComponent implements OnInit {
         const { url } = val
         if(!url.includes('/search;str=')) {
           this.input = ''
-        } else {
-          const strStart = url.indexOf(';str=') + ';str='.length;
-          this.input = url.slice(strStart)
         }
       }
     })
@@ -30,8 +27,9 @@ export class TopbarComponent implements OnInit {
   }
 
   inputHandler(value: string) {
+    console.log(value)
     if(value.trim()) {
-      this.router.navigate(['/search', {str: value.trim().replace(' ', '_')}])
+      this.router.navigate(['/search', {str: value}])
     } else {
       this.router.navigate(['/popular'])
     }

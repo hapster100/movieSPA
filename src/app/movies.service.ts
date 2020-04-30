@@ -23,12 +23,12 @@ export class MoviesService {
   private base: string = 'https://api.themoviedb.org/3'
   private imgBase: string = 'https://image.tmdb.org/t/p/w500'
   private apiKey: string = '449bfa3fee79bc69bf41918baaf646fd'
-  private genres: Observable<Genre[]> 
+  genres$: Observable<Genre[]> 
 
   constructor(
     private http: HttpClient
   ) { 
-    this.genres = this.getGenres().pipe(map(res => res.genres))
+    this.genres$ = this.getGenres().pipe(map(res => res.genres))
   }
 
   private addPostarUrlBase<T extends Movie>(imgBase: string) { 
@@ -52,7 +52,7 @@ export class MoviesService {
       params: {
         api_key: this.apiKey,
         page: page.toString(),
-        query: search.replace('_', ' ')
+        query: search.replace('%25', ' ')
       }
     }).pipe(map(res => ({...res, results: res.results.map(this.addPostarUrlBase(this.imgBase))})))
   }
@@ -83,10 +83,6 @@ export class MoviesService {
         api_key: this.apiKey 
       }
     })
-  }
-
-  getGanres() {
-    return this.genres
   }
 
 }

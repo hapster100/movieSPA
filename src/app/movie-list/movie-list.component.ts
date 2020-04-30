@@ -21,7 +21,7 @@ export class MovieListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.movieApi.getGanres().subscribe(genres => {
+    this.movieApi.genres$.subscribe(genres => {
       this.genres = genres
     })
     this.favorService.ids$.subscribe(ids => this.favorites = ids)

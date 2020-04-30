@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { MoviesService } from './movies.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
