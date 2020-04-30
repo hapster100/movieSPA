@@ -36,7 +36,7 @@ export class DetailComponent implements OnInit {
       })
     ).subscribe(m => {
       this.movie = m
-      this.favorite = !!this.favorService.get().find(i => i === m.id)
+      this.favorite = this.favorService.isFavorite(m.id)
       this.loadingMovie = false
     })
   }

@@ -13,7 +13,8 @@ export class MovieListComponent implements OnInit {
   @Input() movies: Movie[]
 
   genres: Genre[] = []
-  
+  favorites: number[]
+
   constructor(
     private movieApi: MoviesService,
     private favorService: FavoritesService
@@ -23,10 +24,11 @@ export class MovieListComponent implements OnInit {
     this.movieApi.getGanres().subscribe(genres => {
       this.genres = genres
     })
+    this.favorService.ids$.subscribe(ids => this.favorites = ids)
   }
 
   isFavor(id: number) {
-    return this.favorService.get().includes(id)
+    return this.favorites.includes(id)
   }
 
   movieGenres(movie: number[]): string[] {

@@ -18,9 +18,11 @@ export class FavoriteComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const ids = this.favorService.get();
-    ids.forEach(id => {
-      this.movieApi.getMovieDetails(id).subscribe(m => this.movies.push(m))
+    this.favorService.ids$.subscribe(ids => {
+      this.movies = []
+      ids.forEach(id => {
+        this.movieApi.getMovieDetails(id).subscribe(m => this.movies.push(m))
+      })
     })
   }
 }

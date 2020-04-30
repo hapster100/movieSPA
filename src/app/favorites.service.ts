@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MoviesService } from './movies.service';
-import { of } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,34 +9,37 @@ export class FavoritesService {
 
   private lsKey = 'favorite_movies';
 
-  private ids: number[]
+  private ids: BehaviorSubject<number[]> = new BehaviorSubject<number[]>([])
+  ids$: Observable<number[]>
 
   constructor() {
     const record = localStorage.getItem(this.lsKey) 
     if(record) {
-      this.ids = record.split(':').map(Number)
+      this.ids.next(record.split(':').map(Number)) 
     } else {
       localStorage.setItem(this.lsKey, '')
-      this.ids = []
+      this.ids.next([])
     }
+    this.ids$ = this.ids.asObservable();
   }
 
   private save(ids: number[]) {
     localStorage.setItem(this.lsKey, ids.join(':'))
-  }
-
-  get() {
-    return this.ids
+    this.ids.next(ids)
   }
 
   delete(id: number) {
-    this.ids = this.ids.filter(i => i != id)
-    this.save(this.ids)
+    const ids = this.ids.getValue().filter(i => i != id)
+    this.save(ids)
   }
 
   add(id: number) {
-    this.ids.push(id)
-    this.save(this.ids)
+    const ids =  [...this.ids.getValue(), id]
+    this.save(ids)
+  }
+
+  isFavorite(id: number) {
+    return this.ids.getValue().includes(id)
   }
 
 }
