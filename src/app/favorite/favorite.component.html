@@ -1,0 +1,8 @@
+<app-movie-list *ngIf="movies.length > 0; else noFavorites"
+  [movies]="movies"
+></app-movie-list>
+<ng-template #noFavorites>
+  <div class="no-favorites">
+    No favorite movies
+  </div>
+</ng-template>

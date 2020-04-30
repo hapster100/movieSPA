@@ -1,0 +1,59 @@
+.detail {
+  display: flex;
+  &__poster {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 400px;
+    img {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  &__info {
+    margin-left: 20px;
+    width: calc(100% - 420px);
+  }
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-field {
+  font-size: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  &__title {
+    min-width: 100px;
+    font-weight: 700;
+    margin-right: 10px;
+  }
+}
+
+.recommend-list {
+  
+  margin: 20px 0;
+
+  &__title {
+    padding-left: 20px;
+    font-size: 30px;
+    font-weight: 700;
+  }
+
+
+  &__wrapper {
+    overflow: auto;
+    white-space: nowrap;
+    border-radius: 20px;
+  }
+  &__item {
+    width: 200px;
+    height: 100%;
+    margin: 10px;
+    display: inline-block;
+  }
+}

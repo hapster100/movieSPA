@@ -1,0 +1,9 @@
+<div class="search">
+  <app-movie-list [movies]="movies"></app-movie-list>
+  <div *ngIf="loading">
+    <app-loader></app-loader>
+  </div>
+  <div *ngIf="allPagesLoad && movies.length === 0" class="no-results">
+    No Results
+  </div>
+</div>

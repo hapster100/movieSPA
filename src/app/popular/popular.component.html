@@ -1,0 +1,6 @@
+<div class="popular">
+  <app-movie-list [movies]="movies"></app-movie-list>
+  <div *ngIf="loading">
+    <app-loader></app-loader>
+  </div>
+</div>

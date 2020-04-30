@@ -1,0 +1,52 @@
+<div>
+  <div class="loader" *ngIf="loadingMovie; else details">
+    <app-loader></app-loader>
+  </div>
+</div>
+
+<ng-template #details>
+  <div class="detail">
+    <div class="detail__poster">
+      <img [src]="movie.poster_path">
+      <button mat-raised-button 
+        [color]="!favorite ? 'accent' : 'warn'" 
+        (click)="toogleFavorite()"
+      >{{favorite ? 'Remove from Favorites' : 'Add to Favorites'}}</button>
+    </div>
+    <div class="detail__info">
+      <div class="info-field">
+        <div class="info-field__title">Title:</div> <div>{{ movie.title }}</div>
+      </div>
+
+      <div class="info-field">
+        <div class="info-field__title">Genre:</div> 
+        <div>{{ genreNames() }}</div>
+      </div>
+
+      <div class="info-field">
+        <div class="info-field__title">Overview:</div> <div>{{ movie.overview }}</div>
+      </div>
+
+      <div class="info-field">
+        <div class="info-field__title">Release:</div> <div>{{ movie.release_date }}</div>
+      </div>
+
+      <div class="info-field">
+        <div class="info-field__title">Company:</div> 
+        <div>{{ companyNames() }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="recommend-list" *ngIf="recommends.length > 0">
+    <span class="recommend-list__title">Recommends:</span>
+    <div class="recommend-list__wrapper">
+      <div class="recommend-list__item" *ngFor="let rec of recommends">
+        <app-preview
+          [title]="rec.title"
+          [imgUrl]="rec.poster_path"
+          [id]="rec.id"
+        ></app-preview>
+      </div>
+    </div>
+  </div>
+</ng-template>

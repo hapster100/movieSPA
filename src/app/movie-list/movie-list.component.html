@@ -1,0 +1,29 @@
+<div class="movie-list">
+  <div *ngFor="let movie of movies">
+    <app-preview
+      [title]="movie.title"
+      [imgUrl]="movie.poster_path"
+      [id]="movie.id"
+    >
+      <div class="preview">
+        <div class="preview__top">
+          <div class="preview__genres">
+            <div class="genre" *ngFor="let genre of movieGenres(movie.genre_ids)">
+              {{genre}}
+            </div>
+          </div>
+          <div class="preview__favor" (click)="toogleFavorite(movie)">
+            <mat-icon
+              [ngStyle]="{
+                color: isFavor(movie.id) ? 'yellow' : 'white'
+              }"
+            >star</mat-icon>
+          </div>
+        </div>
+        <div class="preview__title">
+          {{ movie.title }}
+        </div>
+      </div>
+    </app-preview>
+  </div>
+</div>

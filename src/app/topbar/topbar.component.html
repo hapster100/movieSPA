@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+  <mat-icon>search</mat-icon>
+  <mat-form-field class="full-width">
+    <input matInput [(ngModel)]="input" (ngModelChange)="inputHandler($event)">
+  </mat-form-field>
+  <span class="space"></span>
+  <span class="link">
+    <a mat-raised-button 
+      color="secondary" 
+      routerLink="popular"
+      routerLinkActive="active"
+    >Populars</a>
+  </span>
+  <span class="link">
+    <a mat-raised-button 
+      color="secondary" 
+      routerLink="favorite"
+      routerLinkActive="active"
+    >Favorites</a>
+  </span>
+</mat-toolbar>

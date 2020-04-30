@@ -1,0 +1,10 @@
+<div class="preview">
+  <a [routerLink]="['/movie', id]">
+    <img [src]="imgUrl">
+  </a>
+  <div class="preview__overlay">
+    <div class="preview__content">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>
