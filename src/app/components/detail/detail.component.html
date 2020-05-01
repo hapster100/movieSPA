@@ -20,7 +20,11 @@
 
       <div class="info-field">
         <div class="info-field__title">Genre:</div> 
-        <div>{{ genreNames() }}</div>
+        <div class="info-field__list list">
+          <div class="list__item" *ngFor="let genre of movie.genres">
+            {{ genre.name }}
+          </div>
+        </div>
       </div>
 
       <div class="info-field">
@@ -28,12 +32,25 @@
       </div>
 
       <div class="info-field">
-        <div class="info-field__title">Release:</div> <div>{{ movie.release_date }}</div>
+        <div class="info-field__title">Release:</div> <div>{{ realeaseDate() | date:'d MMM y' }}</div>
+      </div>
+
+      <div class="info-field">
+        <div class="info-field__title">Country:</div> 
+        <div class="info-file__list list">
+          <div class="list__item" *ngFor="let country of movie.production_countries">
+            {{ country.name }}
+          </div>
+        </div>
       </div>
 
       <div class="info-field">
         <div class="info-field__title">Company:</div> 
-        <div>{{ companyNames() }}</div>
+        <div class="info-file__list list">
+          <div class="list__item" *ngFor="let company of movie.production_companies">
+            {{ company.name }}
+          </div>
+        </div>
       </div>
     </div>
   </div>

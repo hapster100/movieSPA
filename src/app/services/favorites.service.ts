@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Injectable } from '@angular/core' 
+import { BehaviorSubject, Observable } from 'rxjs' 
 
 @Injectable({
   providedIn: 'root'
 })
 export class FavoritesService {
 
-  private lsKey = 'favorite_movies';
+  private lsKey = 'favorite_movies' 
 
   private ids: BehaviorSubject<number[]> = new BehaviorSubject<number[]>([])
   ids$: Observable<number[]>
@@ -19,7 +19,7 @@ export class FavoritesService {
       localStorage.setItem(this.lsKey, '')
       this.ids.next([])
     }
-    this.ids$ = this.ids.asObservable();
+    this.ids$ = this.ids.asObservable() 
   }
 
   private save(ids: number[]) {

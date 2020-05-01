@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core' 
+import { HttpClient, HttpErrorResponse } from '@angular/common/http' 
 import { Movie, MovieDetail, Genre } from '../interfaces/Movie'
-import { map, catchError } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators' 
+import { Observable, throwError } from 'rxjs' 
 import { tmdbConfig } from '../tmdb.config'
-import { Router } from '@angular/router';
+import { Router } from '@angular/router' 
 
 interface MovieListResponse {
   readonly page: number

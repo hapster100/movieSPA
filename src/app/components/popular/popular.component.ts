@@ -1,5 +1,5 @@
-import { Component, OnInit, HostListener } from '@angular/core';
-import { MoviesService } from '../../services/movies.service';
+import { Component, OnInit, HostListener } from '@angular/core' 
+import { MoviesService } from '../../services/movies.service' 
 import { Movie } from '../../interfaces/Movie'
 
 @Component({
@@ -25,8 +25,8 @@ export class PopularComponent implements OnInit {
 
   @HostListener("window:scroll", ["$event"])
   onWindowScroll() {
-    let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
-    let max = document.documentElement.scrollHeight;
+    let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight 
+    let max = document.documentElement.scrollHeight 
     if(pos == max ) {
       this.loadNextPage()
     }

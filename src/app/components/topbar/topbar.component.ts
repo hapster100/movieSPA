@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Component, OnInit } from '@angular/core' 
+import { Router, NavigationEnd } from '@angular/router' 
 
 @Component({
   selector: 'app-topbar',
@@ -18,7 +18,7 @@ export class TopbarComponent implements OnInit {
     this.router.events.subscribe((val) => {
       if(val instanceof NavigationEnd) {
         const { url } = val
-        if(!url.includes('/search;str=')) {
+        if(!url.includes('/search str=')) {
           this.input = ''
         }
       }

@@ -1,7 +1,7 @@
-import { Component, OnInit, HostListener } from '@angular/core';
-import { MoviesService } from '../../services/movies.service';
+import { Component, OnInit, HostListener } from '@angular/core' 
+import { MoviesService } from '../../services/movies.service' 
 import { Movie } from '../../interfaces/Movie'
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router' 
 
 @Component({
   selector: 'app-popular',
@@ -34,8 +34,8 @@ export class SearchComponent implements OnInit {
 
   @HostListener("window:scroll", ["$event"])
   onWindowScroll() {
-    let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
-    let max = document.documentElement.scrollHeight;
+    let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight 
+    let max = document.documentElement.scrollHeight 
     if(pos == max ) {
       this.loadNextPage(this.search)
     }

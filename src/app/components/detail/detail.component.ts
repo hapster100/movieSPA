@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Movie, MovieDetail } from '../../interfaces/Movie';
-import { MoviesService } from '../../services/movies.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core' 
+import { Movie, MovieDetail } from '../../interfaces/Movie' 
+import { MoviesService } from '../../services/movies.service' 
+import { ActivatedRoute, Router } from '@angular/router' 
 import { switchMap, catchError } from 'rxjs/operators'
-import { FavoritesService } from '../../services/favorites.service';
-import { throwError } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
+import { FavoritesService } from '../../services/favorites.service' 
+import { throwError } from 'rxjs' 
+import { HttpErrorResponse } from '@angular/common/http' 
 
 @Component({
   selector: 'app-detail',
@@ -65,14 +65,8 @@ export class DetailComponent implements OnInit {
     })
   }
 
-  companyNames() {
-    const getName = (company): string => company.name
-    return this.movie.production_companies.map(getName).join(', ')
-  }
-
-  genreNames() {
-    const getGenre = (genre): string => genre.name;
-    return this.movie.genres.map(getGenre).join(', ')
+  realeaseDate() {
+    return new Date(this.movie.release_date)
   }
 
   toogleFavorite() {
