@@ -6,20 +6,16 @@ import { AppComponent } from './app.component'
 import { PopularComponent } from './components/popular/popular.component'
 import { TopbarComponent } from './components/topbar/topbar.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { MatToolbarModule } from '@angular/material/toolbar'
-import { MatButtonModule } from '@angular/material/button'
-import { MatInputModule } from '@angular/material/input'
-import { MatIconModule } from '@angular/material/icon'
-import { MatCardModule } from '@angular/material/card'
-import { RouterModule } from '@angular/router'
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { PreviewComponent } from './components/preview/preview.component'
-import { LoaderComponent } from './components/loader/loader.component';
-import { MovieListComponent } from './components/movie-list/movie-list.component';
-import { DetailComponent } from './components/detail/detail.component';
-import { FavoriteComponent } from './components/favorite/favorite.component';
+import { LoaderComponent } from './components/loader/loader.component'
+import { MovieListComponent } from './components/movie-list/movie-list.component'
+import { DetailComponent } from './components/detail/detail.component'
+import { FavoriteComponent } from './components/favorite/favorite.component'
 import { SearchComponent } from './components/search/search.component'
 import { FormsModule } from '@angular/forms'
+import { MaterialModule } from './modules/material.module'
+import { RoutingModule } from './modules/router.module'
+
 
 @NgModule({
   declarations: [
@@ -37,20 +33,9 @@ import { FormsModule } from '@angular/forms'
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatInputModule,
-    MatIconModule,
-    MatCardModule,
-    MatProgressSpinnerModule,
+    MaterialModule,
     FormsModule,
-    RouterModule.forRoot([
-      { path: 'popular', component: PopularComponent },
-      { path: 'favorite', component: FavoriteComponent },
-      { path: 'movie/:id', component: DetailComponent },
-      { path: 'search', component: SearchComponent},
-      { path: '**', redirectTo: 'popular' }
-    ])
+    RoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

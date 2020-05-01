@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Movie, MovieDetail, Genre } from '../interfaces/Movie'
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { tmdbConfig } from '../tmdb.config'
 
 interface MovieListResponse {
   readonly page: number
@@ -20,9 +21,10 @@ interface GenreListResponse {
 })
 export class MoviesService {
 
-  private base: string = 'https://api.themoviedb.org/3'
-  private imgBase: string = 'https://image.tmdb.org/t/p/w500'
-  private apiKey: string = '449bfa3fee79bc69bf41918baaf646fd'
+  private base: string = tmdbConfig.base
+  private imgBase: string = tmdbConfig.imgBase
+  private apiKey: string = tmdbConfig.apiKey
+  private imgDefault: string = tmdbConfig.imgDefault
   genres$: Observable<Genre[]> 
 
   constructor(
@@ -33,7 +35,7 @@ export class MoviesService {
 
   private addPostarUrlBase<T extends Movie>(imgBase: string) { 
     return (m: T): T => {
-      const withPoster = { ...m, poster_path: m.poster_path ? this.imgBase + m.poster_path : 'assets/empty.jpg' } 
+      const withPoster = { ...m, poster_path: m.poster_path ? this.imgBase + m.poster_path : this.imgDefault } 
       return withPoster
     }
   }
