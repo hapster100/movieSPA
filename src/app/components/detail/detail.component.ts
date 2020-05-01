@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie, MovieDetail } from '../../interfaces/Movie';
 import { MoviesService } from '../../services/movies.service';
-import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs/operators'
+import { ActivatedRoute, Router } from '@angular/router';
+import { switchMap, catchError } from 'rxjs/operators'
 import { FavoritesService } from '../../services/favorites.service';
+import { throwError } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-detail',
@@ -23,16 +25,22 @@ export class DetailComponent implements OnInit {
 
   constructor(
     private movieApi: MoviesService,
-    private router: ActivatedRoute,
+    private route: ActivatedRoute,
+    private router: Router,
     private favorService: FavoritesService
   ) {}
 
   private loadMovieDetails() {
     this.loadingMovie = true
-    this.router.paramMap.pipe(
+    this.route.paramMap.pipe(
       switchMap(params => {
         this.id = +params.get('id')
         return this.movieApi.getMovieDetails(this.id)
+      }),
+      catchError((e: HttpErrorResponse) => {
+        if(e.status === 404)
+          this.router.navigate(['/favorites'])
+        return throwError('Movie details not found')
       })
     ).subscribe(m => {
       this.movie = m
@@ -43,7 +51,9 @@ export class DetailComponent implements OnInit {
 
   private loadRecomendations() {
     this.loadingRecommendations = true
-    this.movieApi.getMovieRecommendations(this.id).subscribe(res => {
+    this.movieApi.getMovieRecommendations(this.id).pipe(
+      catchError(() => [])
+    ).subscribe(res => {
       this.recommends = res.results
       this.loadingRecommendations = false
     })
@@ -52,7 +62,7 @@ export class DetailComponent implements OnInit {
   ngOnInit(): void {
     this.loadMovieDetails()
     this.loadRecomendations()
-    this.router.params.subscribe(() => {
+    this.route.params.subscribe(() => {
       this.loadMovieDetails()
       this.loadRecomendations()
     })
