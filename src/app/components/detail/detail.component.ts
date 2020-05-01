@@ -37,10 +37,9 @@ export class DetailComponent implements OnInit {
         this.id = +params.get('id')
         return this.movieApi.getMovieDetails(this.id)
       }),
-      catchError((e: HttpErrorResponse) => {
-        if(e.status === 404)
-          this.router.navigate(['/favorites'])
-        return throwError('Movie details not found')
+      catchError((e) => {
+        this.router.navigate(['/popular'])
+        return throwError(e)
       })
     ).subscribe(m => {
       this.movie = m
@@ -51,9 +50,7 @@ export class DetailComponent implements OnInit {
 
   private loadRecomendations() {
     this.loadingRecommendations = true
-    this.movieApi.getMovieRecommendations(this.id).pipe(
-      catchError(() => [])
-    ).subscribe(res => {
+    this.movieApi.getMovieRecommendations(this.id).subscribe(res => {
       this.recommends = res.results
       this.loadingRecommendations = false
     })

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Movie, MovieDetail, Genre } from '../interfaces/Movie'
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
 import { tmdbConfig } from '../tmdb.config'
+import { Router } from '@angular/router';
 
 interface MovieListResponse {
   readonly page: number
@@ -28,7 +29,8 @@ export class MoviesService {
   genres$: Observable<Genre[]> 
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { 
     this.genres$ = this.getGenres().pipe(map(res => res.genres))
   }
@@ -65,6 +67,9 @@ export class MoviesService {
         api_key: this.apiKey
       }
     }).pipe(
+      catchError((e: HttpErrorResponse) => {
+        return throwError('Movie details not found')
+      }),
       map(this.addPostarUrlBase(this.imgBase)),
       map(m => ({...m, genre_ids: m.genres.map(g => g.id)}))
     )
@@ -76,7 +81,10 @@ export class MoviesService {
         api_key: this.apiKey,
         page: page.toString()
       }
-    }).pipe(map(res => ({...res, results: res.results.map(this.addPostarUrlBase(this.imgBase))})))
+    }).pipe(
+      catchError(() => []),
+      map(res => ({...res, results: res.results.map(this.addPostarUrlBase(this.imgBase))}))
+    )
   }
 
   private getGenres() {
